@@ -1,0 +1,154 @@
+{% extends "dashboard/base.html" %} {% load static %} {% block title %}
+dashboard | Product {% endblock title %} {% block content %}
+<style>
+  .alert {
+    transition: opacity 0.5s ease-in-out;
+  }
+  .hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+</style>
+<div class="content-wrapper">
+  <div class="row">
+    <div class="col-lg-8 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Users</h4>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>S.no</th>
+                  <th>image</th>
+                  <th>username</th>
+                  <th>email</th>
+                </tr>
+              </thead>
+              {% for i in objs %}
+              <tbody>
+                <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td class="py-1">
+                    <img
+                      src="{{ i.image.url }}"
+                      alt="image"
+                      style="max-width: 100px; max-height: 100px"
+                    />
+                  </td>
+                  <td>{{i.username}}</td>
+                  <td>{{i.email}}</td>
+                </tr>
+              </tbody>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+                    <!-- Display Django messages -->
+                    {% if messages %} {% for message in messages %}
+                    <div
+                      class="alert alert-{{ message.tags }} alert-dismissible fade show"
+                      role="alert"
+                    >
+                      {{ message }}
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    {% endfor %} {% endif %}
+          <h4 class="card-title">Add Staff</h4>
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="first_name">First Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="first_name"
+                name="first_name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="last_name">Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="last_name"
+                name="last_name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="confirm_password">Confirm Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="confirm_password"
+                name="confirm_password"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="image">Image</label>
+              <input
+                type="file"
+                class="form-control-file"
+                id="image"
+                name="image"
+                accept="image/*"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">
+              Create Staff
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  // Automatically close alert messages after 3 seconds
+  document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(function () {
+      let alerts = document.querySelectorAll(".alert");
+      alerts.forEach(function (alert) {
+        alert.classList.add("fade");
+        setTimeout(function () {
+          alert.remove();
+        }, 1000); // Fade out duration
+      });
+    }, 3000); // Display duration (3 seconds)
+  });
+</script>
+{% endblock content %}

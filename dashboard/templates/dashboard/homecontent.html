@@ -1,0 +1,102 @@
+{% extends "dashboard/base.html" %} {% load static %} {% block title %}
+dashboard | Services {% endblock title %} {% block content %}
+<div class="content-wrapper">
+  <div class="row">
+    <div class="col-md-4 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Add Home Content</h4>
+          <form
+            class="forms-sample"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+            {% csrf_token %}
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="exampleInputUsername1"
+                name="title"
+                placeholder="Title"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="number"
+                class="form-control"
+                id="exampleInputEmail1"
+                name="number"
+                placeholder="Enter Number"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary me-2">Add</button>
+          </form>
+        </div>
+      </div>
+    </div>
+      <div class="col-lg-8 grid-margin stretch-card">
+        
+      <div class="card">
+        <div class="card-body">
+          <!-- Display Django messages -->
+          {% if messages %}
+          <div>
+            {% for message in messages %}
+            <div class="alert alert-success" role="alert" id="success-message">
+              {{ message }}
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+          <h4 class="card-title">Home Contents</h4>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="col-lg-1">S.no</th>
+                  <th class="col-lg-2">title</th>
+                  <th class="col-lg-7">Description</th>
+                  <th class="col-lg-2">Action</th>
+                </tr>
+              </thead>
+              {% for i in objs %}
+              <tbody>
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.title}}</td>
+                    <td>{{i.number}}</td>
+                    <td>
+                  <!-- Edit Button -->
+                  <a href="{% url "dashboard-homecontentedit" pk=i.id %}">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                    </td>
+                    </td>
+                  </tr>
+              </tbody>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  // Automatically close alert messages after 3 seconds
+  document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(function () {
+      let alerts = document.querySelectorAll(".alert");
+      alerts.forEach(function (alert) {
+        alert.classList.add("fade");
+        setTimeout(function () {
+          alert.remove();
+        }, 1000); // Fade out duration
+      });
+    }, 3000); // Display duration (3 seconds)
+  });
+</script>
+{% endblock content %}

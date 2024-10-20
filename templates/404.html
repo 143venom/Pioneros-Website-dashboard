@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>500 Internal Server Error</title>
+    <style>
+      /* Your custom CSS styles go here */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f3f3f3;
+      }
+      .container {
+        text-align: center;
+        padding: 100px;
+      }
+      h1 {
+        font-size: 48px;
+        color: #ff5733;
+      }
+      h2 {
+        font-size: 30px;
+        color: #ff5733;
+      }
+      p {
+        font-size: 18px;
+        color: #555;
+      }
+      .timer {
+        text-align: center;
+        font-size: 24px;
+        color: #777;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Oops! Something Went Wrong</h1>
+      <p>We're experiencing technical difficulties. Please try again later.</p>
+      <h2>OR</h2>
+      <p>The Page Is Not Exist</p>
+      <p>
+        If the issue persists, you can contact our support team at
+        <a href="mailto:14ing.dev@gmail.com">14ing.dev@gmail.com</a>.
+      </p>
+    </div>
+
+    <div class="timer" id="timer">
+      Redirecting in <span id="countdown">10</span> seconds...
+    </div>
+
+    <script>
+      var countdown = 10;
+      var timer = setInterval(function () {
+        countdown--;
+        document.getElementById("countdown").textContent = countdown;
+        if (countdown <= 0) {
+          clearInterval(timer);
+          history.go(-1);
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>

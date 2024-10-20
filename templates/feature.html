@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+
+Pioneros / WAREHOUSES & LOGISTICS
+
+{% endblock title %}
+
+
+
+{% block content %}
+
+    <!-- Page Header Start -->
+    {% comment %} <div class="container-fluid py-5 mb-5 wow fadeIn" data-wow-delay="0.1s" style="background: url('{{images.image.url}}') top center no-repeat; background-size: cover; text-shadow: 0 0 30px rgba(0, 0, 0, .1);">
+        <div class="container py-5">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">Warehouse</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol class="breadcrumb text-uppercase mb-0">
+                    <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
+                    <li class="breadcrumb-item text-primary active" aria-current="page">Warehouse</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End --> {% endcomment %}
+
+
+    <!-- Feature Start -->
+    <div class="container-fluid overflow-hidden px-lg-0" style="margin: 6rem 0;">
+        <div class="container feature px-lg-0">
+            <div class="row g-0 mx-lg-0">
+                {% for n in warehouses %}
+                <div class="col-12 col-lg-6 pe-lg-0 wow fadeIn mb-2 p-3 mt-3 mt-lg-0 mb-lg-0 p-lg-0" data-wow-delay="0.5s" style="min-height: 500px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute img-fluid w-100 h-100" src="{{n.image.url}}" style="object-fit: fit;" alt="">
+                    </div>
+                </div>
+                {% endfor %} 
+            </div>
+        </div>
+    </div>
+    <!-- Feature End -->
+
+{% endblock content %}
+
+

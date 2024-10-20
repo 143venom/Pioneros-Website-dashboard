@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Under Construction</title>
+  <style>
+    /* Your custom CSS styles go here */
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('https://i.pinimg.com/originals/4a/39/6a/4a396a59a31af7fc6d071d65fc1246ea.jpg'); /* Replace with your image path */
+      background-size: fit;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .overlay {
+      background-color: rgba(255, 255, 255, 0.9); /* Adjust overlay color and opacity */
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 48px;
+      color: #ff5733;
+    }
+    h2 {
+      font-size: 30px;
+      color: #ff5733;
+    }
+    p {
+      font-size: 18px;
+      color: #555;
+    }
+    .home-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+    .home-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h1>Coming Soon</h1>
+    <p>Our website is</p>
+    <h2>under construction</h2>
+    <a href="{% url "index" %}" class="home-button">Home</a>
+  </div>
+</body>
+</html>

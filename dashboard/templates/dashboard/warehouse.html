@@ -1,0 +1,87 @@
+{% extends "dashboard/base.html" %} {% load static %} {% block title %}
+dashboard | Warehouse & Logistic {% endblock title %} {% block content %}
+<div class="content-wrapper">
+  <!-- Display Django messages -->
+  {% if messages %}
+  <div>
+    {% for message in messages %}
+    <div class="alert alert-success" role="alert" id="success-message">
+      {{ message }}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  <div class="row">
+    <div class="col-lg-8 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Warehouse & Logistic</h4>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="col-lg-1">S.no</th>
+                  <th class="col-lg-10">Image</th>
+                  <th class="col-lg-1">Action</th>
+
+                </tr>
+              </thead>
+              {% for i in objs %}
+              <tbody>
+                <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td class="py-1">
+                    <img src="{{ i.image.url }}" alt="image" style="max-width: 500px; max-height: 500px" />
+                  </td>
+                  <td>
+                    <!-- Edit Button -->
+                    <a href="{% url 'warehouse-edit' pk=i.id %}">
+                      <i class="fas fa-edit"></i>
+                    </a>
+                    <!-- Delete Button -->
+                    <a href="{% url 'warehouse-delete' pk=i.id %}">
+                      <i class="fas fa-trash-alt" style="color: red;"></i>
+                    </a>
+                  </td>
+                  </td>
+                </tr>
+              </tbody>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Add Warehouse & Logistic</h4>
+          <form class="forms-sample" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <div class="input-group col-xs-12 d-flex align-items-center mt-2">
+                <input type="file" class="form-control-file" id="id_image" name="image" accept="image/*" required />
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary me-2">Add</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  // Automatically close alert messages after 3 seconds
+  document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(function () {
+      let alerts = document.querySelectorAll('.alert');
+      alerts.forEach(function (alert) {
+        alert.classList.add('fade');
+        setTimeout(function () {
+          alert.remove();
+        }, 1000);  // Fade out duration
+      });
+    }, 3000);  // Display duration (3 seconds)
+  });
+</script>
+{% endblock content %}

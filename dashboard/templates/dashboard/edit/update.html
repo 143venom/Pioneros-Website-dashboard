@@ -1,0 +1,321 @@
+{% extends "dashboard/base.html" %} {% load static %} {% block title %}
+dashboard | Company Info {% endblock title %} {% block content %}
+<div class="content-wrapper">
+  <div class="row justify-content-center">
+    <div class="col-md-8 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <!-- Display Django messages -->
+          {% if messages %}
+          <div>
+            {% for message in messages %}
+            <div class="alert alert-success" role="alert" id="success-message">
+              {{ message }}
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %} {% if form_type == "companyinfo" %}
+          <h4 class="card-title">Company Info</h4>
+          <form class="forms-sample" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="inputServiceName">Company Name</label>
+              <input type="text" class="form-control" id="inputServiceName" name="name" value="{{ objs.name }}"
+                placeholder="Enter Company Name" />
+            </div>
+            <div class="form-group">
+              <label for="inputServiceEmail">Email</label>
+              <input type="email" class="form-control" id="inputServiceEmail" name="email" value="{{ objs.email }}"
+                placeholder="Enter Email" />
+            </div>
+            <div class="form-group">
+              <label for="inputServiceLocation">Location</label>
+              <input type="text" class="form-control" id="inputServiceLocation" name="location"
+                value="{{ objs.location }}" placeholder="Enter Location" required />
+            </div>
+            <div class="form-group">
+              <label for="inputServicePhone">Phone Number</label>
+              <input type="text" class="form-control" id="inputServicePhone" name="phone" value="{{ objs.phone }}"
+                placeholder="Enter Phone Number" required />
+            </div>
+            <div class="form-group">
+              <label for="inputServiceOpen">Opening Time</label>
+              <input type="text" class="form-control" id="inputServiceOpen" name="open" value="{{ objs.open }}"
+                placeholder="Enter Opening Time" required />
+            </div>
+            <div class="form-group">
+              <label for="inputServiceLogo">Logo</label>
+              <input type="file" class="form-control-file" id="inputServiceLogo" name="logo" />
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+          {% elif form_type == "homecontenttitle" %}
+          <h4 class="card-title">home content title</h4>
+          <form class="forms-sample" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="text" class="form-control" id="exampleInputUsername1" name="title" placeholder="Title"
+                value="{{ objs.title }}" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+          {% elif form_type == "homecontent" %}
+          <h4 class="card-title">home content</h4>
+          <form class="forms-sample" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="text" class="form-control" id="exampleInputUsername1" name="title" placeholder="Title"
+                value="{{ objs.title }}" required />
+            </div>
+            <div class="form-group">
+              <input type="number" class="form-control" id="exampleInputEmail1" name="number" placeholder="Enter Number"
+                value="{{ objs.number }}" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+          {% elif form_type == "carousel" %}
+          <h4 class="card-title">home content</h4>
+          <form class="forms-sample" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="text" class="form-control" id="exampleInputUsername1" name="title" placeholder="Title"
+                value="{{ objs.title }}" required />
+            </div>
+            <div class="form-group input-group col-xs-12 d-flex align-items-center mt-2">
+              <input type="file" class="form-control-file" id="id_image" name="image" accept="image/*" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+          {% elif form_type == "warehouseandlogistic" %}
+          <h4 class="card-title">Warehouse And Logistic</h4>
+          <form class="forms-sample" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="inputWarehouseImage">Image</label>
+              <input type="file" class="form-control-file" id="inputWarehouseImage" name="image" accept="image/*" />
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+
+          {% elif form_type == "service" %}
+          <h4 class="card-title">Service</h4>
+          <form class="forms-sample" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="text" class="form-control" id="exampleInputUsername1" name="title" placeholder="Title"
+                value="{{ objs.title }}" required />
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="exampleInputEmail1" name="description"
+                placeholder="Description" value="{{ objs.description }}" required />
+            </div>
+            <div class="form-group">
+              <div class="input-group col-xs-12 d-flex align-items-center mt-2">
+                <input type="file" class="form-control-file" id="id_image" name="image" accept="image/*" required />
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+          {% elif form_type == "servicebackground" %}
+          <h4 class="card-title">Service Background</h4>
+          <form class="forms-sample" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="inputWarehouseImage">Image</label>
+              <input type="file" class="form-control-file" id="inputWarehouseImage" name="images" accept="image/*" />
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+          {% elif form_type == "contactbackground" %}
+          <h4 class="card-title">Service Background</h4>
+          <form class="forms-sample" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="inputWarehouseImage">Image</label>
+              <input type="file" class="form-control-file" id="inputWarehouseImage" name="images" accept="image/*" />
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+
+          {% elif form_type == "product" %}
+          <h4 class="card-title">Product</h4>
+          <form class="forms-sample" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="text" class="form-control" id="exampleInputUsername1" name="title" placeholder="Title"
+                value="{{ objs.title }}" required />
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="exampleInputEmail1" name="description"
+                placeholder="Description" value="{{ objs.description }}" required />
+            </div>
+            <div class="form-group">
+              <div class="input-group col-xs-12 d-flex align-items-center mt-2">
+                <input type="file" class="form-control-file" id="id_image" name="image" accept="image/*" required />
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+          {% elif form_type == "productbackground" %}
+          <h4 class="card-title">Product Background</h4>
+          <form class="forms-sample" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="inputWarehouseImage">Image</label>
+              <input type="file" class="form-control-file" id="inputWarehouseImage" name="images" accept="image/*" />
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+          {% elif form_type == "testimonial" %}
+          <h4 class="card-title">Testimonials</h4>
+          <form class="forms-sample" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="inputTestimonialName">Name</label>
+              <input type="text" class="form-control" id="inputTestimonialName" name="name"
+                value="{{ objs.patient_name }}" placeholder="Enter Name" required />
+            </div>
+            <div class="form-group">
+              <label for="inputTestimonialMessage">Message</label>
+              <input type="text" class="form-control" id="inputTestimonialMessage" name="message"
+                value="{{ objs.message }}" placeholder="Enter Message" required />
+            </div>
+            <div class="form-group">
+              <label for="inputTestimonialProfession">Profession</label>
+              <input type="text" class="form-control" id="inputTestimonialProfession" name="profession"
+                value="{{ objs.profession }}" placeholder="Enter Profession" required />
+            </div>
+            <div class="form-group">
+              <label for="inputTestimonialImage">Image</label>
+              <input type="file" class="form-control-file" id="inputTestimonialImage" name="image" accept="image/*" />
+              <small class="form-text text-muted">Upload optional</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+          {% elif form_type == "about" %}
+          <h4 class="card-title">About Title</h4>
+          <form class="forms-sample" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="text" class="form-control" id="exampleInputUsername1" name="title" placeholder="Title"
+                value="{{ objs.title }}" required />
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="exampleInputUsername2" name="title" placeholder="Description"
+                value="{{ objs.description }}" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+          {% elif form_type == "feature" %}
+          <h4 class="card-title">Feature Title</h4>
+          <form class="forms-sample" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="text" class="form-control" id="exampleInputUsername1" name="title" placeholder="Title"
+                value="{{ objs.title }}" required />
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="exampleInputUsername2" name="description"
+                placeholder="Description" value="{{ objs.description }}" required />
+            </div>
+            <div class="form-group">
+              <div class="input-group col-xs-12 d-flex align-items-center mt-2">
+                <input
+                  type="file"
+                  class="form-control-file"
+                  id="id_image"
+                  name="image"
+                  accept="image/*"
+                  required
+                />
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+          {% elif form_type == "featurecontent" %}
+          <h4 class="card-title">Feature Content</h4>
+          <form class="forms-sample" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="text" class="form-control" id="exampleInputUsername1" name="title" placeholder="Title"
+                value="{{ objs.name }}" required />
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="exampleInputUsername2" name="description"
+                placeholder="Description" value="{{ objs.department }}" required />
+            </div>
+            <div class="form-group">
+              <label for="inputWarehouseImage">Image</label>
+              <input type="file" class="form-control-file" id="inputWarehouseImage" name="image" accept="image/*" />
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+          {% elif form_type == "aboutcontent" %}
+          <h4 class="card-title">About Content</h4>
+          <form class="forms-sample" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="text" class="form-control" id="exampleInputUsername1" name="title" placeholder="Title"
+                value="{{ objs.title }}" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+          {% elif form_type == "socialmedia" %}
+          <h4 class="card-title">Social Media</h4>
+          <form class="forms-sample" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group">
+              <label for="inputFacebookUrl">Facebook URL</label>
+              <input type="url" class="form-control" id="inputFacebookUrl" name="facebook_url"
+                placeholder="Enter Facebook URL" value="{{ objs.facebook_url }}" required>
+            </div>
+
+            <div class="form-group">
+              <label for="inputTwitterUrl">Twitter URL</label>
+              <input type="url" class="form-control" id="inputTwitterUrl" name="twitter_url"
+                placeholder="Enter Twitter URL" value="{{ objs.twitter_url }}" required>
+            </div>
+
+            <div class="form-group">
+              <label for="inputInstagramUrl">Instagram URL</label>
+              <input type="url" class="form-control" id="inputInstagramUrl" name="instagram_url"
+                placeholder="Enter Instagram URL" value="{{ objs.instagram_url }}" required>
+            </div>
+
+            <div class="form-group">
+              <label for="inputLinkedinUrl">LinkedIn URL</label>
+              <input type="url" class="form-control" id="inputLinkedinUrl" name="linkedin_url"
+                placeholder="Enter LinkedIn URL" value="{{ objs.linkedin_url }}" required>
+            </div>
+
+            <div class="form-group">
+              <label for="inputYoutubeUrl">Youtube URL</label>
+              <input type="url" class="form-control" id="inputYoutubeUrl" name="youtube_url"
+                placeholder="Enter Youtube URL" value="{{ objs.youtube_url }}" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Automatically close alert messages after 3 seconds
+  document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(function () {
+      let alerts = document.querySelectorAll(".alert");
+      alerts.forEach(function (alert) {
+        alert.classList.add("fade");
+        setTimeout(function () {
+          alert.remove();
+        }, 1000); // Fade out duration
+      });
+    }, 3000); // Display duration (3 seconds)
+  });
+</script>
+{% endblock content %}
